@@ -17,16 +17,21 @@ var testGame = [
 function calculateScore(allFrames) {
   var totalScore = 0;
   for (var frame = 0; frame < allFrames.length; frame++) {
-    console.log(frame)
     if (calculateFrameScore(allFrames[frame]) == 10) {
       if (allFrames[frame][0] == 10) { //strike
         totalScore += calculateFrameScore(allFrames[frame])
+          if(allFrames[frame+1][0] == 10)
+          {
+            totalScore += calculateFrameScore(allFrames[frame+1])
+            totalScore += allFrames[frame+2][0]
+          }
+          else{
         totalScore += calculateFrameScore(allFrames[frame+1])
+      }
 
       }
       else{ //spare
         totalScore += calculateFrameScore(allFrames[frame])
-        console.log(typeof frame);
         totalScore += allFrames[frame+1][0]
       }
     }
